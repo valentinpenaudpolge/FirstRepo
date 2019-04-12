@@ -1,0 +1,50 @@
+---
+title: "prog1"
+author: "valentin"
+date: "12/04/2019"
+output:
+  html_document:
+    toc: TRUE
+    code_folding: "hide"
+    number_sections: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+### Importation des librairies
+<br>
+
+```{r message=FALSE, warning=FALSE}
+library(ggplot2)
+library(magrittr)
+library(gapminder)
+library(dplyr)
+library(hrbrthemes)
+library(plotly)
+library(DT)
+library(devtools)
+install_github("holtzy/epuRate")
+library(epuRate)
+```
+
+### Première analyse du dataset
+<br>
+
+```{r}
+head(gapminder)
+nrow(gapminder)
+summary(gapminder)
+```
+
+### Premier Graph
+<br>
+
+```{r, fig.width = 5, fig.height = 5, fig.align='center'}
+gg = gapminder %>% filter(country != "Kuwait")%>% filter(year=="1952") %>% ggplot( aes(x=gdpPercap, y=lifeExp, color=continent, size = pop )) + geom_point() + theme_ft_rc()
+ggplotly(gg)
+```
+
+
