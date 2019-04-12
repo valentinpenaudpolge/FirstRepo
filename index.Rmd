@@ -1,5 +1,5 @@
 ---
-title: "prog1"
+title: "Analyse de Dataset"
 author: "valentin"
 date: "12/04/2019"
 output:
@@ -20,31 +20,44 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r message=FALSE, warning=FALSE}
 library(ggplot2)
 library(magrittr)
-library(gapminder)
 library(dplyr)
 library(hrbrthemes)
 library(plotly)
 library(DT)
 library(devtools)
-install_github("holtzy/epuRate")
-library(epuRate)
 ```
 
-### Première analyse du dataset
+### First analysis of the dataset :
+<br>
+
+#### Head of dataset
 <br>
 
 ```{r}
-head(gapminder)
-nrow(gapminder)
-summary(gapminder)
+data = read.csv("Consumo_cerveja.csv")
+head(data)
 ```
 
-### Premier Graph
+#### Number of row :
 <br>
 
-```{r, fig.width = 5, fig.height = 5, fig.align='center'}
-gg = gapminder %>% filter(country != "Kuwait")%>% filter(year=="1952") %>% ggplot( aes(x=gdpPercap, y=lifeExp, color=continent, size = pop )) + geom_point() + theme_ft_rc()
-ggplotly(gg)
+```{r}
+nrow(data)
+```
+
+#### Summary :
+<br>
+
+```{r}
+summary(data)
+```
+
+
+### Premier Graph : Une première vue du Dataset
+<br>
+
+```{r, fig.width = 10, fig.height = 10, fig.align='center'}
+plot(data)
 ```
 
 
